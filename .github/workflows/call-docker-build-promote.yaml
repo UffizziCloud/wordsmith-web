@@ -27,7 +27,7 @@ jobs:
       contents: read
       packages: write
       pull-requests: write
-    uses: mostlydevops/actions/.github/workflows/reusable-docker-build.yaml@main
+    uses: UffizziCloud/actions/.github/workflows/reusable-docker-build.yaml@main
     with:
       # DON'T login to or push to Docker Hub
       dockerhub-enable: false
@@ -43,7 +43,7 @@ jobs:
     needs: docker-build-pr
     permissions:
       packages: read
-    uses: mostlydevops/actions/.github/workflows/reusable-trivy-scan-image.yaml@main
+    uses: UffizziCloud/actions/.github/workflows/reusable-trivy-scan-image.yaml@main
     secrets:
       registry-username: ${{ github.actor }}
       registry-password: ${{ secrets.GITHUB_TOKEN }}
@@ -75,7 +75,7 @@ jobs:
       contents: read
       packages: write
       pull-requests: write
-    uses: mostlydevops/actions/.github/workflows/reusable-docker-build.yaml@main
+    uses: UffizziCloud/actions/.github/workflows/reusable-docker-build.yaml@main
     with:
       dockerhub-enable: false
       ghcr-enable: true
@@ -93,7 +93,7 @@ jobs:
     name: Call GitOps PR
     if: github.event_name == 'push'
     needs: docker-build-merge
-    uses: mostlydevops/MostlyDevOps-actions/.github/workflows/reusable-gitops-pr.yaml@main
+    uses: UffizziCloud/actions/.github/workflows/reusable-gitops-pr.yaml@main
     secrets:
       github-token: ${{ secrets.GITOPS_WORDSMITH_K8S }}
     with:
